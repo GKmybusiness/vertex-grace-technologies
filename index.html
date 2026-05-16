@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vertex Grace Technologies — Engineering the Future Beyond Limits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #050813;
+    --bg-panel: #0a1124;
+    --bg-card: #0d1530;
+    --gold: #d4a437;
+    --gold-soft: #e8c466;
+    --blue: #3aa8ff;
+    --blue-glow: #5ac8ff;
+    --text: #e6ebf5;
+    --text-dim: #8a96b5;
+    --border: rgba(212, 164, 55, 0.18);
+    --border-blue: rgba(58, 168, 255, 0.22);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(58, 168, 255, 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 90%, rgba(212, 164, 55, 0.06), transparent);
+  }
+
+  /* Typography */
+  h1, h2, h3, .display { font-family: 'Orbitron', sans-serif; letter-spacing: 0.02em; }
+
+  /* Reusable */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .gold { color: var(--gold); }
+  .blue { color: var(--blue); }
+
+  /* ========== NAVIGATION ========== */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    backdrop-filter: blur(14px);
+    background: rgba(5, 8, 19, 0.75);
+    border-bottom: 1px solid var(--border);
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1280px; margin: 0 auto;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo { width: 38px; height: 38px; }
+  .brand-text { line-height: 1.1; }
+  .brand-text .name {
+    font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 18px;
+    letter-spacing: 0.18em; color: var(--text);
+  }
+  .brand-text .sub {
+    font-size: 10px; letter-spacing: 0.35em; color: var(--gold);
+    font-weight: 500; margin-top: 2px;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none;
+    font-size: 12px; letter-spacing: 0.2em; font-weight: 500;
+    text-transform: uppercase; transition: color 0.3s, border-color 0.3s;
+    padding-bottom: 6px; border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); border-color: var(--blue); }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh; padding: 140px 0 80px;
+    display: flex; align-items: center; position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; position: relative; z-index: 2;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 6vw, 84px); font-weight: 900;
+    line-height: 0.95; margin-bottom: 28px; letter-spacing: 0.01em;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(180deg, var(--blue-glow), var(--blue));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    text-shadow: 0 0 80px rgba(58, 168, 255, 0.3);
+  }
+  .hero p.lead {
+    font-size: 17px; color: var(--text-dim); max-width: 460px;
+    margin-bottom: 40px; line-height: 1.7;
+  }
+  .cta-row { display: flex; gap: 16px; margin-bottom: 56px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 14px 28px; font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.25em; font-weight: 600;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--blue); color: var(--blue);
+    background: transparent; cursor: pointer;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--blue); transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1); z-index: -1;
+  }
+  .btn:hover::before { transform: translateX(0); }
+  .btn:hover { color: var(--bg-deep); }
+  .btn.gold-btn { border-color: var(--gold); color: var(--gold); }
+  .btn.gold-btn::before { background: var(--gold); }
+  .btn .arrow { transition: transform 0.3s; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .pillars {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
+    max-width: 760px;
+  }
+  .pillar {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  }
+  .pillar-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pillar-label {
+    font-size: 10px; letter-spacing: 0.18em; color: var(--text-dim);
+    font-weight: 600; text-transform: uppercase; line-height: 1.4;
+  }
+
+  /* Hero artwork */
+  .hero-art {
+    position: relative; aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-art svg { width: 100%; height: 100%; }
+
+  .station-rotate { transform-origin: center; animation: stationSpin 60s linear infinite; }
+  @keyframes stationSpin { to { transform: rotate(360deg); } }
+  .core-pulse { animation: corePulse 3s ease-in-out infinite; transform-origin: center; }
+  @keyframes corePulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute; bottom: 30px; right: 32px;
+    display: flex; align-items: center; gap: 12px; color: var(--text-dim);
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  }
+  .scroll-indicator .dot {
+    width: 32px; height: 32px; border: 1px solid var(--text-dim);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    animation: bobble 2.5s ease-in-out infinite;
+  }
+  @keyframes bobble { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+  /* ========== SECTION HEADER ========== */
+  .section { padding: 120px 0; position: relative; }
+  .section-title {
+    text-align: center; font-size: 14px; letter-spacing: 0.4em;
+    text-transform: uppercase; margin-bottom: 60px; color: var(--text);
+    font-family: 'Orbitron', sans-serif; font-weight: 500;
+    position: relative; display: block;
+  }
+  .section-title::before, .section-title::after {
+    content: ''; position: absolute; top: 50%; width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .section-title::before { right: calc(50% + 200px); }
+  .section-title::after { left: calc(50% + 200px); }
+
+  /* ========== TECHNOLOGY GRID ========== */
+  .tech-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .tech-card {
+    background: var(--bg-card); border: 1px solid var(--border-blue);
+    padding: 0; overflow: hidden; position: relative;
+    transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+  }
+  .tech-card:hover {
+    transform: translateY(-6px); border-color: var(--blue);
+    box-shadow: 0 20px 60px -20px rgba(58, 168, 255, 0.35);
+  }
+  .tech-visual {
+    height: 200px; background: linear-gradient(135deg, #0a1530, #050813);
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid var(--border-blue); position: relative; overflow: hidden;
+  }
+  .tech-visual svg { width: 80%; height: 80%; }
+  .tech-body { padding: 28px; }
+  .tech-icon {
+    width: 36px; height: 36px; margin-bottom: 18px; color: var(--blue);
+  }
+  .tech-card h3 {
+    font-size: 14px; letter-spacing: 0.2em; color: var(--blue);
+    text-transform: uppercase; margin-bottom: 14px; font-weight: 700;
+  }
+  .tech-card p {
+    font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 22px;
+  }
+  .learn-more {
+    color: var(--text); font-size: 11px; letter-spacing: 0.25em;
+    text-decoration: none; text-transform: uppercase; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color 0.3s, gap 0.3s;
+  }
+  .learn-more:hover { color: var(--blue); gap: 14px; }
+
+  /* ========== SIMULATION SHOWCASE ========== */
+  .sim-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+  }
+  .sim-card {
+    background: var(--bg-card); border: 1px solid var(--border-blue);
+    transition: border-color 0.3s, transform 0.3s; cursor: pointer;
+  }
+  .sim-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+  .sim-thumb {
+    aspect-ratio: 16 / 10; background: linear-gradient(135deg, #0a1530, #050813);
+    position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .sim-thumb svg.bg { width: 100%; height: 100%; opacity: 0.6; }
+  .play-btn {
+    position: absolute; width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(5, 8, 19, 0.7); border: 1px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue); transition: all 0.3s; backdrop-filter: blur(4px);
+  }
+  .sim-card:hover .play-btn { background: var(--blue); color: var(--bg-deep); transform: scale(1.1); }
+  .sim-time {
+    position: absolute; bottom: 8px; right: 8px;
+    background: rgba(5, 8, 19, 0.85); color: var(--text); font-size: 10px;
+    padding: 3px 8px; font-family: 'Orbitron', sans-serif;
+  }
+  .sim-info { padding: 16px; }
+  .sim-info h4 {
+    font-size: 11px; letter-spacing: 0.18em; color: var(--text);
+    text-transform: uppercase; margin-bottom: 6px; font-weight: 600;
+    font-family: 'Inter', sans-serif;
+  }
+  .sim-info p { font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+
+  .view-all-wrap { text-align: center; margin-top: 50px; }
+
+  /* ========== INFO COLUMNS ========== */
+  .info-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    border-top: 1px solid var(--border); padding-top: 80px;
+  }
+  .info-col h4 {
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 20px; font-family: 'Orbitron', sans-serif;
+    font-weight: 700; display: flex; align-items: center; gap: 10px;
+  }
+  .info-col p { font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 20px; }
+  .info-col ul { list-style: none; }
+  .info-col ul li {
+    font-size: 13px; color: var(--text-dim); padding: 6px 0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .info-col ul li::before {
+    content: ''; width: 5px; height: 5px; background: var(--blue);
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .research-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .research-item:last-child { border-bottom: none; }
+  .research-item .title { font-size: 12px; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+  .research-item .date { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--border); padding: 60px 0 30px; margin-top: 80px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 60px; margin-bottom: 40px;
+  }
+  .footer-col h5 {
+    font-size: 11px; letter-spacing: 0.3em; color: var(--blue);
+    text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 700;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .footer-col .contact-line {
+    font-size: 13px; color: var(--text-dim); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .social-row { display: flex; gap: 12px; }
+  .social-row a {
+    width: 38px; height: 38px; border: 1px solid var(--border-blue);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue); text-decoration: none; transition: all 0.3s;
+  }
+  .social-row a:hover { background: var(--blue); color: var(--bg-deep); transform: translateY(-2px); }
+  .footer-bottom {
+    border-top: 1px solid var(--border); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em;
+  }
+  .footer-bottom a { color: var(--text-dim); text-decoration: none; margin-left: 18px; }
+  .footer-bottom a:hover { color: var(--blue); }
+
+  /* ========== FOUNDER / ABOUT ========== */
+  .founder-wrap { display: flex; justify-content: center; }
+  .founder-card {
+    background: linear-gradient(180deg, var(--bg-card), var(--bg-panel));
+    border: 1px solid var(--border);
+    padding: 60px 50px 50px; max-width: 720px; width: 100%;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .founder-card::before {
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .founder-emblem {
+    width: 100px; height: 100px; margin: 0 auto 24px;
+  }
+  .founder-emblem svg { width: 100%; height: 100%; }
+  .founder-role {
+    font-family: 'Orbitron', sans-serif; font-size: 11px;
+    letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .founder-name {
+    font-family: 'Orbitron', sans-serif; font-size: 36px; font-weight: 700;
+    color: var(--text); margin-bottom: 24px; letter-spacing: 0.04em;
+  }
+  .founder-divider {
+    width: 60px; height: 1px; background: var(--gold);
+    margin: 0 auto 28px;
+  }
+  .founder-bio {
+    font-size: 15px; color: var(--text-dim); line-height: 1.85;
+    max-width: 540px; margin: 0 auto;
+  }
+  .founder-bio strong { color: var(--text); font-weight: 500; }
+
+  /* ========== MODAL (Invited Partners) ========== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(2, 4, 10, 0.85); backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px; opacity: 0; transition: opacity 0.3s ease;
+  }
+  .modal-overlay.active { display: flex; opacity: 1; }
+  .modal-box {
+    background: linear-gradient(180deg, #0d1530, #0a1124);
+    border: 1px solid var(--border-blue);
+    max-width: 480px; width: 100%; padding: 44px 36px 36px;
+    position: relative; box-shadow: 0 40px 80px -20px rgba(58, 168, 255, 0.4);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+  .modal-box::before {
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 32px; height: 32px; background: transparent;
+    border: 1px solid var(--border-blue); color: var(--text-dim);
+    cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .modal-close:hover { border-color: var(--gold); color: var(--gold); }
+  .modal-icon {
+    width: 56px; height: 56px; margin: 0 auto 20px;
+    border: 1px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+  }
+  .modal-tag {
+    font-family: 'Orbitron', sans-serif; font-size: 10px;
+    letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase;
+    text-align: center; margin-bottom: 10px;
+  }
+  .modal-title {
+    font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 700;
+    color: var(--text); text-align: center; margin-bottom: 18px;
+    letter-spacing: 0.05em;
+  }
+  .modal-divider {
+    width: 40px; height: 1px; background: var(--gold);
+    margin: 0 auto 20px;
+  }
+  .modal-body {
+    font-size: 14px; color: var(--text-dim); line-height: 1.75;
+    text-align: center; margin-bottom: 28px;
+  }
+  .modal-body strong { color: var(--text); font-weight: 500; }
+  .modal-cta {
+    display: flex; flex-direction: column; gap: 14px; align-items: center;
+  }
+  .modal-cta a.email-link {
+    color: var(--blue); text-decoration: none; font-size: 13px;
+    letter-spacing: 0.05em; word-break: break-all;
+    border-bottom: 1px solid transparent; transition: border-color 0.3s;
+  }
+  .modal-cta a.email-link:hover { border-color: var(--blue); }
+  .modal-cta .btn-modal {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 28px; font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.25em; font-weight: 600;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--gold); color: var(--gold);
+    background: transparent; cursor: pointer; transition: all 0.3s;
+  }
+  .modal-cta .btn-modal:hover { background: var(--gold); color: var(--bg-deep); }
+
+  /* Make tech cards and sim cards feel clickable */
+  .tech-card, .sim-card { cursor: pointer; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-art { order: -1; max-width: 400px; margin: 0 auto; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .tech-grid { grid-template-columns: 1fr; }
+    .sim-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .section-title::before, .section-title::after { display: none; }
+    .section { padding: 80px 0; }
+    .scroll-indicator { display: none; }
+  }
+  @media (max-width: 540px) {
+    .info-grid, .sim-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .cta-row { flex-direction: column; }
+    .btn { justify-content: center; }
+    .founder-card { padding: 40px 24px 32px; }
+    .founder-name { font-size: 26px; }
+    .founder-bio { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <nav>
+    <div class="brand">
+      <svg class="brand-logo" viewBox="0 0 60 60" fill="none">
+        <path d="M10 12 L30 48 L50 12 Z" stroke="#d4a437" stroke-width="2.5" fill="none"/>
+        <path d="M20 12 L30 30 L40 12" stroke="#d4a437" stroke-width="2.5" fill="none"/>
+      </svg>
+      <div class="brand-text">
+        <div class="name">VERTEX GRACE</div>
+        <div class="sub">TECHNOLOGIES</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#technologies">Technologies</a></li>
+      <li><a href="#simulations">Simulations</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#careers">Collaboration</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>ENGINEERING<br><span class="accent">HUMANITY'S</span><br>FUTURE</h1>
+        <p class="lead">Advanced space systems, intelligent navigation, innovative propulsion, and modular habitats — designed to expand possibilities beyond Earth.</p>
+        <div class="cta-row">
+          <a href="#technologies" class="btn">Explore Technologies <span class="arrow">→</span></a>
+          <a href="#simulations" class="btn gold-btn">View Simulations <span class="arrow">→</span></a>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+                <circle cx="16" cy="16" r="5"/>
+              </svg>
+            </div>
+            <div class="pillar-label">Advanced<br>Engineering</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+                <path d="M10 16 L16 10 L22 16 L16 22 Z"/>
+              </svg>
+            </div>
+            <div class="pillar-label">Intelligent<br>Navigation</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+                <path d="M12 12h8v8h-8z M16 8v16 M8 16h16"/>
+              </svg>
+            </div>
+            <div class="pillar-label">Modular<br>Habitats</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+                <path d="M16 8v16 M11 13l5-5 5 5 M11 19l5 5 5-5"/>
+              </svg>
+            </div>
+            <div class="pillar-label">Propulsion<br>Systems</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 32 32" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+                <circle cx="16" cy="14" r="3"/>
+                <path d="M10 24c2-3 4-4 6-4s4 1 6 4"/>
+              </svg>
+            </div>
+            <div class="pillar-label">Built for<br>Humanity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero artwork: space station -->
+      <div class="hero-art">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="earthGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#3aa8ff" stop-opacity="0.4"/>
+              <stop offset="70%" stop-color="#3aa8ff" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#3aa8ff" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2a3550"/>
+              <stop offset="100%" stop-color="#0a1124"/>
+            </linearGradient>
+            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#5ac8ff"/>
+              <stop offset="50%" stop-color="#3aa8ff" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#3aa8ff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Earth horizon glow -->
+          <ellipse cx="250" cy="460" rx="280" ry="40" fill="url(#earthGlow)"/>
+          <path d="M -30 470 Q 250 430 530 470 L 530 540 L -30 540 Z" fill="#0a1530" opacity="0.6"/>
+
+          <!-- Rotating station -->
+          <g class="station-rotate">
+            <!-- Outer hexagon ring -->
+            <g transform="translate(250 230)">
+              <!-- Hex arms -->
+              <g stroke="#3aa8ff" stroke-width="1" fill="url(#panelGrad)">
+                <!-- Modules around center -->
+                <polygon points="0,-160 35,-140 35,-100 0,-80 -35,-100 -35,-140" />
+                <polygon points="120,-90 155,-70 155,-30 120,-10 85,-30 85,-70" />
+                <polygon points="120,90 155,110 155,150 120,170 85,150 85,110" transform="translate(0 -80)"/>
+                <polygon points="0,80 35,100 35,140 0,160 -35,140 -35,100" />
+                <polygon points="-120,90 -85,110 -85,150 -120,170 -155,150 -155,110" transform="translate(0 -80)"/>
+                <polygon points="-120,-90 -85,-70 -85,-30 -120,-10 -155,-30 -155,-70" />
+              </g>
+
+              <!-- Connecting struts -->
+              <g stroke="#3aa8ff" stroke-width="1.5" stroke-opacity="0.7">
+                <line x1="0" y1="-80" x2="0" y2="-30"/>
+                <line x1="85" y1="-50" x2="40" y2="-25"/>
+                <line x1="85" y1="50" x2="40" y2="25"/>
+                <line x1="0" y1="80" x2="0" y2="30"/>
+                <line x1="-85" y1="50" x2="-40" y2="25"/>
+                <line x1="-85" y1="-50" x2="-40" y2="-25"/>
+              </g>
+
+              <!-- Center hub -->
+              <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15"
+                fill="url(#panelGrad)" stroke="#d4a437" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="14" fill="url(#coreGlow)" class="core-pulse"/>
+              <circle cx="0" cy="0" r="5" fill="#5ac8ff"/>
+
+              <!-- Module windows (small lights) -->
+              <g fill="#5ac8ff">
+                <circle cx="0" cy="-120" r="1.5"/>
+                <circle cx="120" cy="-50" r="1.5"/>
+                <circle cx="120" cy="50" r="1.5"/>
+                <circle cx="0" cy="120" r="1.5"/>
+                <circle cx="-120" cy="50" r="1.5"/>
+                <circle cx="-120" cy="-50" r="1.5"/>
+              </g>
+            </g>
+          </g>
+
+          <!-- Subtle star field -->
+          <g fill="#ffffff" opacity="0.4">
+            <circle cx="60" cy="80" r="0.8"/>
+            <circle cx="430" cy="60" r="0.6"/>
+            <circle cx="380" cy="160" r="0.5"/>
+            <circle cx="100" cy="200" r="0.7"/>
+            <circle cx="460" cy="280" r="0.6"/>
+            <circle cx="40" cy="350" r="0.5"/>
+            <circle cx="120" cy="40" r="0.4"/>
+            <circle cx="320" cy="380" r="0.5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll to Explore</span>
+    <div class="dot">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2 4 L5 7 L8 4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CORE TECHNOLOGIES ========== -->
+<section class="section" id="technologies">
+  <div class="container">
+    <h2 class="section-title">Our Core Technologies</h2>
+    <div class="tech-grid">
+
+      <article class="tech-card">
+        <div class="tech-visual">
+          <!-- Propulsion graphic -->
+          <svg viewBox="0 0 200 140" fill="none">
+            <defs>
+              <radialGradient id="prop1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#5ac8ff"/><stop offset="100%" stop-color="#3aa8ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g stroke="#3aa8ff" stroke-width="1" fill="#0a1530">
+              <g transform="translate(60 30)">
+                <polygon points="0,0 17,10 17,30 0,40 -17,30 -17,10"/>
+                <polygon points="34,0 51,10 51,30 34,40 17,30 17,10"/>
+                <polygon points="68,0 85,10 85,30 68,40 51,30 51,10"/>
+                <polygon points="17,30 34,40 34,60 17,70 0,60 0,40"/>
+                <polygon points="51,30 68,40 68,60 51,70 34,60 34,40"/>
+              </g>
+            </g>
+            <circle cx="100" cy="70" r="22" fill="url(#prop1)"/>
+            <circle cx="100" cy="70" r="8" fill="#5ac8ff"/>
+          </svg>
+        </div>
+        <div class="tech-body">
+          <svg class="tech-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+            <path d="M16 8v16 M11 13l5-5 5 5"/>
+          </svg>
+          <h3>Propulsion Systems</h3>
+          <p>Advanced propulsion architectures and integrated thrust systems for next-generation aerospace vehicles.</p>
+          <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-visual">
+          <!-- Navigation network -->
+          <svg viewBox="0 0 200 140" fill="none" stroke="#3aa8ff">
+            <g stroke-width="0.8" opacity="0.6">
+              <line x1="40" y1="40" x2="100" y2="70"/>
+              <line x1="100" y1="70" x2="160" y2="40"/>
+              <line x1="40" y1="40" x2="60" y2="100"/>
+              <line x1="160" y1="40" x2="140" y2="100"/>
+              <line x1="60" y1="100" x2="100" y2="70"/>
+              <line x1="140" y1="100" x2="100" y2="70"/>
+              <line x1="60" y1="100" x2="140" y2="100"/>
+              <line x1="40" y1="40" x2="160" y2="40"/>
+            </g>
+            <g fill="#5ac8ff">
+              <circle cx="40" cy="40" r="4"/>
+              <circle cx="100" cy="70" r="6"/>
+              <circle cx="160" cy="40" r="4"/>
+              <circle cx="60" cy="100" r="4"/>
+              <circle cx="140" cy="100" r="4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="tech-body">
+          <svg class="tech-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+            <path d="M10 16 L16 10 L22 16 L16 22 Z"/>
+          </svg>
+          <h3>Navigation Systems</h3>
+          <p>Adaptive navigation and coordination across distributed spacecraft architectures for optimal routing and autonomy.</p>
+          <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-visual">
+          <!-- Modular habitats -->
+          <svg viewBox="0 0 200 140" fill="none" stroke="#3aa8ff" stroke-width="1">
+            <g fill="#1a2540">
+              <polygon points="60,40 75,32 90,40 90,55 75,63 60,55"/>
+              <polygon points="90,40 105,32 120,40 120,55 105,63 90,55"/>
+              <polygon points="75,63 90,55 105,63 105,78 90,86 75,78"/>
+              <polygon points="105,63 120,55 135,63 135,78 120,86 105,78"/>
+              <polygon points="60,78 75,70 90,78 90,93 75,101 60,93"/>
+              <polygon points="120,78 135,70 150,78 150,93 135,101 120,93"/>
+              <polygon points="90,86 105,78 120,86 120,101 105,109 90,101"/>
+            </g>
+            <g fill="#5ac8ff">
+              <circle cx="75" cy="47" r="1.5"/><circle cx="105" cy="47" r="1.5"/>
+              <circle cx="90" cy="70" r="1.5"/><circle cx="120" cy="70" r="1.5"/>
+              <circle cx="75" cy="85" r="1.5"/><circle cx="135" cy="85" r="1.5"/>
+              <circle cx="105" cy="93" r="1.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="tech-body">
+          <svg class="tech-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+            <path d="M12 12h8v8h-8z"/>
+          </svg>
+          <h3>Modular Habitats</h3>
+          <p>Scalable space habitat architectures with redundant structural topology for long-duration missions.</p>
+          <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-visual">
+          <!-- Field sensing -->
+          <svg viewBox="0 0 200 140" fill="none">
+            <defs>
+              <radialGradient id="field1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#5ac8ff" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#5ac8ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="70" r="55" fill="url(#field1)"/>
+            <g stroke="#3aa8ff" stroke-width="0.6" fill="none" opacity="0.5">
+              <circle cx="100" cy="70" r="20"/>
+              <circle cx="100" cy="70" r="35"/>
+              <circle cx="100" cy="70" r="50"/>
+              <line x1="100" y1="20" x2="100" y2="120"/>
+              <line x1="50" y1="70" x2="150" y2="70"/>
+              <line x1="65" y1="35" x2="135" y2="105"/>
+              <line x1="65" y1="105" x2="135" y2="35"/>
+            </g>
+            <circle cx="100" cy="70" r="6" fill="#5ac8ff"/>
+          </svg>
+        </div>
+        <div class="tech-body">
+          <svg class="tech-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+            <circle cx="16" cy="16" r="3"/>
+            <circle cx="16" cy="16" r="7"/>
+          </svg>
+          <h3>Sensing Systems</h3>
+          <p>Distributed environmental sensing and navigation optimization for aerospace vehicles in complex operating conditions.</p>
+          <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-visual">
+          <!-- Inertia management - rotating ring -->
+          <svg viewBox="0 0 200 140" fill="none">
+            <g transform="translate(100 70)">
+              <ellipse cx="0" cy="0" rx="60" ry="20" stroke="#3aa8ff" stroke-width="1.5" fill="none"/>
+              <ellipse cx="0" cy="0" rx="50" ry="15" stroke="#3aa8ff" stroke-width="0.8" fill="none" opacity="0.6"/>
+              <ellipse cx="0" cy="0" rx="40" ry="11" stroke="#3aa8ff" stroke-width="0.8" fill="none" opacity="0.4"/>
+              <g fill="#5ac8ff">
+                <circle cx="-60" cy="0" r="3"/>
+                <circle cx="60" cy="0" r="3"/>
+                <circle cx="-42" cy="-14" r="2"/>
+                <circle cx="42" cy="14" r="2"/>
+              </g>
+              <circle cx="0" cy="0" r="10" fill="#0a1530" stroke="#d4a437" stroke-width="1"/>
+              <circle cx="0" cy="0" r="4" fill="#5ac8ff"/>
+            </g>
+          </svg>
+        </div>
+        <div class="tech-body">
+          <svg class="tech-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+            <ellipse cx="16" cy="16" rx="8" ry="3"/>
+          </svg>
+          <h3>Inertia Management</h3>
+          <p>Advanced stabilization systems for energy-efficient spacecraft hover and precision attitude control.</p>
+          <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="tech-card">
+        <div class="tech-visual">
+          <!-- Lunar structures -->
+          <svg viewBox="0 0 200 140" fill="none" stroke="#3aa8ff" stroke-width="1">
+            <path d="M0 105 Q50 95 100 100 T200 105 L200 140 L0 140 Z" fill="#0a1530"/>
+            <g fill="#1a2540">
+              <polygon points="50,85 65,77 80,85 80,100 65,108 50,100"/>
+              <polygon points="80,85 95,77 110,85 110,100 95,108 80,100"/>
+              <polygon points="110,85 125,77 140,85 140,100 125,108 110,100"/>
+              <polygon points="65,100 80,92 95,100 95,115 80,123 65,115"/>
+              <polygon points="95,100 110,92 125,100 125,115 110,123 95,115"/>
+            </g>
+            <g fill="#5ac8ff">
+              <circle cx="65" cy="92" r="1.2"/><circle cx="95" cy="92" r="1.2"/>
+              <circle cx="125" cy="92" r="1.2"/><circle cx="80" cy="107" r="1.2"/>
+              <circle cx="110" cy="107" r="1.2"/>
+            </g>
+            <!-- Comm dish -->
+            <line x1="155" y1="80" x2="155" y2="55" stroke="#d4a437"/>
+            <ellipse cx="155" cy="50" rx="10" ry="4" fill="none" stroke="#d4a437" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="tech-body">
+          <svg class="tech-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9"/>
+            <path d="M8 20l4-4 4 2 8-6"/>
+          </svg>
+          <h3>Space &amp; Lunar Structures</h3>
+          <p>Habitat for space and lunar structures designed for long-duration missions in extreme environments.</p>
+          <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SIMULATION SHOWCASE ========== -->
+<section class="section" id="simulations" style="padding-top: 40px;">
+  <div class="container">
+    <h2 class="section-title">Simulation Showcase</h2>
+    <div class="sim-grid">
+
+      <article class="sim-card">
+        <div class="sim-thumb">
+          <svg class="bg" viewBox="0 0 200 130" fill="none">
+            <defs>
+              <radialGradient id="thrust1" cx="30%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#5ac8ff"/><stop offset="100%" stop-color="#3aa8ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="60" cy="65" rx="50" ry="20" fill="url(#thrust1)"/>
+            <rect x="90" y="55" width="60" height="20" fill="#1a2540" stroke="#3aa8ff" stroke-width="0.6"/>
+            <circle cx="80" cy="65" r="8" fill="#5ac8ff"/>
+          </svg>
+          <div class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>
+          </div>
+          <div class="sim-time">0:18</div>
+        </div>
+        <div class="sim-info">
+          <h4>Propulsion Thrust Simulation</h4>
+          <p>Thrust flow and distribution analysis within proprietary propulsion architecture.</p>
+        </div>
+      </article>
+
+      <article class="sim-card">
+        <div class="sim-thumb">
+          <svg class="bg" viewBox="0 0 200 130" fill="none" stroke="#3aa8ff" stroke-width="0.5">
+            <g opacity="0.6">
+              <line x1="30" y1="40" x2="100" y2="70"/><line x1="100" y1="70" x2="170" y2="40"/>
+              <line x1="30" y1="40" x2="60" y2="100"/><line x1="170" y1="40" x2="140" y2="100"/>
+              <line x1="60" y1="100" x2="140" y2="100"/>
+            </g>
+            <g fill="#5ac8ff">
+              <circle cx="30" cy="40" r="3"/><circle cx="100" cy="70" r="4"/>
+              <circle cx="170" cy="40" r="3"/><circle cx="60" cy="100" r="3"/>
+              <circle cx="140" cy="100" r="3"/>
+            </g>
+          </svg>
+          <div class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>
+          </div>
+          <div class="sim-time">0:20</div>
+        </div>
+        <div class="sim-info">
+          <h4>Adaptive Navigation Simulation</h4>
+          <p>Real-time routing across a distributed spacecraft network.</p>
+        </div>
+      </article>
+
+      <article class="sim-card">
+        <div class="sim-thumb">
+          <svg class="bg" viewBox="0 0 200 130" fill="none">
+            <defs>
+              <radialGradient id="emf1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#5ac8ff"/>
+                <stop offset="50%" stop-color="#3affb8" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#3aa8ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="65" r="55" fill="url(#emf1)"/>
+            <g stroke="#3aa8ff" stroke-width="0.4" fill="none" opacity="0.5">
+              <circle cx="100" cy="65" r="20"/><circle cx="100" cy="65" r="35"/><circle cx="100" cy="65" r="50"/>
+            </g>
+            <circle cx="100" cy="65" r="5" fill="#5ac8ff"/>
+          </svg>
+          <div class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>
+          </div>
+          <div class="sim-time">0:17</div>
+        </div>
+        <div class="sim-info">
+          <h4>Environmental Field Mapping</h4>
+          <p>Sensing, detection range, and environmental optimization analysis.</p>
+        </div>
+      </article>
+
+      <article class="sim-card">
+        <div class="sim-thumb">
+          <svg class="bg" viewBox="0 0 200 130" fill="none">
+            <g transform="translate(100 65)">
+              <ellipse cx="0" cy="0" rx="55" ry="18" stroke="#3aa8ff" stroke-width="1" fill="none"/>
+              <ellipse cx="0" cy="0" rx="40" ry="12" stroke="#3aa8ff" stroke-width="0.6" fill="none" opacity="0.5"/>
+              <g fill="#5ac8ff">
+                <circle cx="-55" cy="0" r="2.5"/><circle cx="55" cy="0" r="2.5"/>
+                <circle cx="-38" cy="-12" r="1.8"/><circle cx="38" cy="12" r="1.8"/>
+              </g>
+              <circle cx="0" cy="0" r="6" fill="#0a1530" stroke="#d4a437"/>
+              <circle cx="0" cy="0" r="2.5" fill="#5ac8ff"/>
+            </g>
+          </svg>
+          <div class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>
+          </div>
+          <div class="sim-time">0:16</div>
+        </div>
+        <div class="sim-info">
+          <h4>Hover Stability Simulation</h4>
+          <p>Stability control using synchronized momentum management systems.</p>
+        </div>
+      </article>
+
+      <article class="sim-card">
+        <div class="sim-thumb">
+          <svg class="bg" viewBox="0 0 200 130" fill="none" stroke="#3aa8ff" stroke-width="0.8">
+            <g fill="#1a2540">
+              <polygon points="50,55 62,49 74,55 74,67 62,73 50,67"/>
+              <polygon points="74,55 86,49 98,55 98,67 86,73 74,67"/>
+              <polygon points="98,55 110,49 122,55 122,67 110,73 98,67"/>
+              <polygon points="62,73 74,67 86,73 86,85 74,91 62,85"/>
+              <polygon points="86,73 98,67 110,73 110,85 98,91 86,85"/>
+            </g>
+            <g fill="#5ac8ff"><circle cx="62" cy="61" r="1.2"/><circle cx="86" cy="61" r="1.2"/><circle cx="110" cy="61" r="1.2"/></g>
+            <line x1="140" y1="60" x2="140" y2="40" stroke="#d4a437"/>
+            <ellipse cx="140" cy="36" rx="7" ry="3" fill="none" stroke="#d4a437"/>
+          </svg>
+          <div class="play-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg>
+          </div>
+          <div class="sim-time">0:22</div>
+        </div>
+        <div class="sim-info">
+          <h4>Habitat Deployment Simulation</h4>
+          <p>Autonomous docking and scalable habitat construction.</p>
+        </div>
+      </article>
+
+    </div>
+    <div class="view-all-wrap">
+      <a href="#" class="btn">View All Simulations <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== INFO COLUMNS ========== -->
+<section class="section" id="mission" style="padding-top: 40px;">
+  <div class="container">
+    <div class="info-grid">
+
+      <div class="info-col">
+        <h4>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="9,1 16,5 16,13 9,17 2,13 2,5"/>
+            <path d="M6 9l3 3 5-6"/>
+          </svg>
+          Our Mission
+        </h4>
+        <p>We engineer advanced systems that empower humanity to explore further, live sustainably, and build a future beyond Earth.</p>
+        <a href="#" class="learn-more">More About Us <span>→</span></a>
+      </div>
+
+      <div class="info-col">
+        <h4>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="9,1 16,5 16,13 9,17 2,13 2,5"/>
+            <circle cx="9" cy="9" r="3"/>
+          </svg>
+          Core Capabilities
+        </h4>
+        <ul style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;margin-bottom:20px;">
+          <li>Propulsion Systems</li>
+          <li>Simulation &amp; Testing</li>
+          <li>Navigation Systems</li>
+          <li>Autonomous Systems</li>
+          <li>Habitat Design</li>
+          <li>Manufacturing</li>
+          <li>Structural Eng.</li>
+          <li>Mission Integration</li>
+          <li>Life Support</li>
+        </ul>
+        <a href="#" class="learn-more">View Capabilities <span>→</span></a>
+      </div>
+
+      <div class="info-col">
+        <h4>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="9,1 16,5 16,13 9,17 2,13 2,5"/>
+            <path d="M5 9h8 M9 5v8"/>
+          </svg>
+          Latest Research
+        </h4>
+        <div class="research-item">
+          <div class="title">Adaptive Navigation in Distributed Spacecraft Architectures</div>
+          <div class="date">May 12, 2026</div>
+        </div>
+        <div class="research-item">
+          <div class="title">Structural Performance Analysis of Advanced Propulsion Systems</div>
+          <div class="date">May 05, 2026</div>
+        </div>
+        <div class="research-item">
+          <div class="title">Inertia-Based Systems for Efficient Hover Applications</div>
+          <div class="date">Apr 29, 2026</div>
+        </div>
+        <a href="#" class="learn-more" style="margin-top:14px;display:inline-flex;">View Research <span>→</span></a>
+      </div>
+
+      <div class="info-col">
+        <h4>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="9,1 16,5 16,13 9,17 2,13 2,5"/>
+            <path d="M9 5v8 M5 9l4-4 4 4"/>
+          </svg>
+          Built for the Future
+        </h4>
+        <p>Innovation. Collaboration. Impact. We work with researchers, engineers, institutions, and partners around the world to turn visionary concepts into real-world systems.</p>
+        <a href="#" class="learn-more">Partner With Us <span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT / FOUNDER ========== -->
+<section class="section" id="about" style="padding-top: 40px;">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <div class="founder-wrap">
+      <div class="founder-card">
+        <div class="founder-emblem">
+          <svg viewBox="0 0 100 100" fill="none">
+            <defs>
+              <radialGradient id="emblemGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#d4a437" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#d4a437" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="48" fill="url(#emblemGlow)"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#d4a437" stroke-width="0.6" opacity="0.5"/>
+            <circle cx="50" cy="50" r="32" fill="none" stroke="#d4a437" stroke-width="0.4" opacity="0.4"/>
+            <path d="M28 32 L50 70 L72 32 Z" stroke="#d4a437" stroke-width="1.5" fill="none"/>
+            <path d="M38 32 L50 50 L62 32" stroke="#d4a437" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="founder-role">Founder &amp; Research Director</div>
+        <h3 class="founder-name">Grace Kukunis</h3>
+        <div class="founder-divider"></div>
+        <p class="founder-bio">Founded by <strong>Grace Kukunis</strong>, Vertex Grace Technologies explores future-oriented concepts in propulsion systems, navigation technologies, lunar habitats, rotational engineering, and advanced scientific systems.</p>
+        <p class="founder-bio" style="margin-top:16px;">Our work is conducted in close collaboration with experienced researchers, simulation engineers, and institutional partners worldwide — advancing systems designed to expand humanity's possibilities beyond Earth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <h5>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="12" height="9" rx="1"/>
+            <path d="M2 5l6 4 6-4"/>
+          </svg>
+          Contact Us
+        </h5>
+        <div class="contact-line">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+            <rect x="1" y="3" width="12" height="8" rx="1"/>
+            <path d="M1 4l6 4 6-4"/>
+          </svg>
+          <a href="mailto:mybusinessgk43@gmail.com" style="color:var(--text-dim);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--text-dim)'">mybusinessgk43@gmail.com</a>
+        </div>
+        <div class="contact-line">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3aa8ff" stroke-width="1.5">
+            <circle cx="7" cy="6" r="2.5"/>
+            <path d="M7 1c3 0 5 2 5 5 0 4-5 8-5 8s-5-4-5-8c0-3 2-5 5-5z"/>
+          </svg>
+          Innovating for humanity. Exploring without limits.
+        </div>
+      </div>
+
+      <div class="footer-col" id="careers">
+        <h5>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="8" cy="5" r="3"/>
+            <path d="M2 14c0-3 3-5 6-5s6 2 6 5"/>
+          </svg>
+          Collaboration
+        </h5>
+        <p style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;"><strong style="color:var(--gold);font-weight:600;">By Invitation Only.</strong> Vertex Grace is not currently open to general applications, internships, or new graduate recruitment.</p>
+        <p style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:18px;">We collaborate selectively with experienced scientists, simulation engineers, and research partners whose work aligns with our long-term mission.</p>
+        <a href="mailto:mybusinessgk43@gmail.com" class="learn-more">Inquire Privately <span>→</span></a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Stay Connected</h5>
+        <div class="social-row">
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 5h2v9H2zM3 2a1 1 0 110 2 1 1 0 010-2zM6 5h2v1.2c.5-.8 1.5-1.4 2.7-1.4 2.3 0 3.3 1.5 3.3 3.7V14h-2V9.2c0-1.4-.6-2.2-1.8-2.2-1.1 0-2.2.7-2.2 2.4V14H6V5z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14 4.3c-.4.2-.9.3-1.4.4.5-.3.9-.8 1.1-1.4-.5.3-1 .5-1.6.6-.5-.5-1.1-.8-1.9-.8-1.4 0-2.6 1.2-2.6 2.6 0 .2 0 .4.1.6-2.2-.1-4.1-1.2-5.4-2.7-.2.4-.4.8-.4 1.3 0 .9.5 1.7 1.2 2.2-.4 0-.8-.1-1.2-.3 0 1.3.9 2.3 2.1 2.6-.2.1-.5.1-.7.1-.2 0-.3 0-.5-.1.3 1 1.3 1.8 2.4 1.8-.9.7-2 1.1-3.2 1.1H2c1.1.7 2.5 1.1 3.9 1.1 4.7 0 7.3-3.9 7.3-7.3v-.3c.5-.4.9-.8 1.2-1.3z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14.5 5.3c-.2-.6-.7-1.1-1.3-1.3C12.1 3.7 8 3.7 8 3.7s-4.1 0-5.2.3c-.6.2-1.1.7-1.3 1.3C1.2 6.4 1.2 8 1.2 8s0 1.6.3 2.7c.2.6.7 1.1 1.3 1.3 1.1.3 5.2.3 5.2.3s4.1 0 5.2-.3c.6-.2 1.1-.7 1.3-1.3.3-1.1.3-2.7.3-2.7s0-1.6-.3-2.7zM6.7 10V6l3.5 2-3.5 2z"/></svg>
+          </a>
+          <a href="#" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3h12c.5 0 1 .5 1 1v8c0 .5-.5 1-1 1H2c-.5 0-1-.5-1-1V4c0-.5.5-1 1-1zm6 5L2.5 4.3v.2L8 8.2l5.5-3.7v-.2L8 8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Vertex Grace Technologies. All rights reserved.</span>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (window.scrollY >= top) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  // ========== INVITED PARTNERS MODAL ==========
+  const modal = document.getElementById('partnersModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalSubject = document.getElementById('modalSubject');
+
+  function openModal(subjectName) {
+    if (!modal || !modalSubject) return;
+    modalSubject.textContent = subjectName || 'our systems';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeModal();
+  });
+
+  // Wire up tech cards (entire card is clickable)
+  document.querySelectorAll('.tech-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const titleEl = card.querySelector('h3');
+      const title = titleEl ? titleEl.textContent.trim() : 'our systems';
+      openModal(title);
+    });
+  });
+
+  // Wire up simulation cards (entire card is clickable)
+  document.querySelectorAll('.sim-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const titleEl = card.querySelector('h4');
+      const title = titleEl ? titleEl.textContent.trim() : 'this simulation';
+      openModal(title);
+    });
+  });
+
+  // Wire up "View All Simulations" button
+  const viewAllBtn = document.querySelector('.view-all-wrap a.btn');
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal('our full simulation library');
+    });
+  }
+});
+</script>
+
+<!-- ========== INVITED PARTNERS MODAL ========== -->
+<div class="modal-overlay" id="partnersModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2 L22 7 L22 17 L12 22 L2 17 L2 7 Z"/>
+        <path d="M7 10 L12 13 L17 10"/>
+      </svg>
+    </div>
+    <div class="modal-tag">Restricted Access</div>
+    <h3 class="modal-title" id="modalTitle">Invited Partners Only</h3>
+    <div class="modal-divider"></div>
+    <p class="modal-body">
+      This content is reserved for invited research partners.<br>
+      Contact us to learn more about <strong id="modalSubject">our systems</strong>.
+    </p>
+    <div class="modal-cta">
+      <a href="mailto:mybusinessgk43@gmail.com?subject=Inquiry%20-%20Vertex%20Grace%20Technologies" class="btn-modal">
+        Inquire Privately <span>→</span>
+      </a>
+      <a href="mailto:mybusinessgk43@gmail.com" class="email-link">mybusinessgk43@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
